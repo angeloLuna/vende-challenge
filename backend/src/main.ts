@@ -16,13 +16,25 @@ async function bootstrap() {
     .build();
 
   const doc = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, doc);
+  SwaggerModule.setup('api/docs', app, doc);
+  const allowList = [
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'https://vende-challenge.vercel.app',
+  ];
+  const vercelPreview = /^https:\/\/[a-z0-9-]+--vende-challenge\.vercel\.app$/;
 
   app.enableCors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://vende-challenge.vercel.app/'],
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true);
+      if (allowList.includes(origin) || vercelPreview.test(origin)) {
+        return cb(null, true);
+      }
+      return cb(new Error(`CORS bloqueado para ${origin}`), false);
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Authorization',
-    credentials: true,
+    maxAge: 86400,
   });
 
   await app.listen(process.env.PORT || 3000);
