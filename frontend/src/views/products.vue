@@ -22,6 +22,7 @@ const newProduct = ref({ name: "", sku: "", price: 0, companyId: "" });
 
 async function loadProducts() {
   const res = await api.get<Product[]>("/products");
+  console.log(res)
   products.value = res.data;
 }
 
@@ -45,6 +46,7 @@ onMounted(() => {
   loadProducts();
 });
 console.log("companies",companies)
+console.log("producgs",products.value)
 </script>
 
 <template>
@@ -80,7 +82,7 @@ console.log("companies",companies)
           <tr v-for="p in products" :key="p.id">
             <td>{{ p.name }}</td>
             <td><code class="code">{{ p.sku }}</code></td>
-            <td>${{ p.price }}</td>
+            <td>\${{ p.price }}</td>
             <td>{{ p.company?.name }}</td>
           </tr>
           <tr v-if="!products.length">

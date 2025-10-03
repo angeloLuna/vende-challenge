@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",              // moderno, soporta import/export
+    "module": "esnext",              // necesario para Vite
+    "moduleResolution": "node",      // resuelve módulos tipo Node
+    "strict": true,                  // validaciones estrictas
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "types": ["vite/client"]         // 👈 habilita import.meta.env
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules"]
+}
