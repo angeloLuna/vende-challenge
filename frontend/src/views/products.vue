@@ -48,41 +48,155 @@ console.log("companies",companies)
 </script>
 
 <template>
-  <div class="p-6 max-w-2xl mx-auto">
-    <h1 class="text-2xl font-bold mb-4">Products</h1>
+  <div class="container">
+    <h1 class="title">Products</h1>
 
     <!-- Formulario -->
-    <form @submit.prevent="createProduct" class="mb-6 space-y-3">
-      <input v-model="newProduct.name" placeholder="Name" class="border p-2 w-full" />
-      <input v-model="newProduct.sku" placeholder="SKU" class="border p-2 w-full" />
-      <input v-model.number="newProduct.price" type="number" step="0.01" placeholder="Price" class="border p-2 w-full" />
+    <form @submit.prevent="createProduct" class="form">
+      <input v-model="newProduct.name" placeholder="Name" class="input" />
+      <input v-model="newProduct.sku" placeholder="SKU" class="input" />
+      <input v-model.number="newProduct.price" type="number" step="0.01" placeholder="Price" class="input" />
 
-      <select v-model="newProduct.companyId" class="border p-2 w-full">
+      <select v-model="newProduct.companyId" class="input">
         <option disabled value="">Select company</option>
         <option v-for="c in companies" :key="c.id" :value="c.id">{{ c.name }}</option>
       </select>
 
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create</button>
+      <button type="submit" class="btn">Create</button>
     </form>
 
     <!-- Lista -->
-    <table class="border-collapse border w-full">
-      <thead>
-        <tr class="bg-gray-100">
-          <th class="border px-2 py-1">Name</th>
-          <th class="border px-2 py-1">SKU</th>
-          <th class="border px-2 py-1">Price</th>
-          <th class="border px-2 py-1">Company</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="p in products" :key="p.id">
-          <td class="border px-2 py-1">{{ p.name }}</td>
-          <td class="border px-2 py-1">{{ p.sku }}</td>
-          <td class="border px-2 py-1">{{ p.price }}</td>
-          <td class="border px-2 py-1">{{ p.company?.name }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>SKU</th>
+            <th>Price</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="p in products" :key="p.id">
+            <td>{{ p.name }}</td>
+            <td><code class="code">{{ p.sku }}</code></td>
+            <td>${{ p.price }}</td>
+            <td>{{ p.company?.name }}</td>
+          </tr>
+          <tr v-if="!products.length">
+            <td colspan="4" class="empty">No products yet.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
+
+
+<style scoped>
+.container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  font-family: system-ui, sans-serif;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.form {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.25);
+}
+
+.btn {
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #1d4ed8;
+}
+
+.table-wrapper {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table th, .table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.table thead th {
+  background: #f3f4f6;
+  font-weight: 600;
+  color: #374151;
+}
+
+.table tbody tr:nth-child(odd) {
+  background: #fafafa;
+}
+
+.table tbody tr:hover {
+  background: #f1f5f9;
+}
+
+.code {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.empty {
+  text-align: center;
+  padding: 1rem;
+  color: #6b7280;
+  font-style: italic;
+}
+</style>
