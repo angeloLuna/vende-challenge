@@ -122,7 +122,6 @@ console.log("companies",companies)
 }
 
 .input {
-  width: 100%;
   padding: 0.6rem 0.75rem;
   border: 1px solid #d1d5db;
   border-radius: 6px;
