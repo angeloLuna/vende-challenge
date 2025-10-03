@@ -2,8 +2,8 @@
 
 Reto técnico **Fullstack Dev** (Vende):
 
-- **backend/** → API REST con **NestJS + Prisma + PostgreSQL (Docker)**.
-- **frontend/** → SPA con **Vue 3 + Composition API + Vite**.
+- **backend/**  API REST con **NestJS + Prisma + PostgreSQL (Docker)**.
+- **frontend/**  SPA con **Vue 3 + Composition API + Vite**.
 
 ---
 
