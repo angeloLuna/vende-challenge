@@ -43,7 +43,7 @@ npm run start:dev
 ```
 
 ### Documentación interactiva
-- Swagger: [http://localhost:3000/docs](http://localhost:3000/docs)
+- Swagger: [http://localhost:3000/api/docs](http://localhost:3000/api/docs)
 
 ---
 
@@ -75,3 +75,15 @@ Aplicación disponible en: [http://localhost:5173](http://localhost:5173)
 - **Validaciones**: `class-validator` en DTOs de NestJS.
 - **CORS**: habilitado para `http://localhost:5173`.
 - **Seed inicial**: crea compañías (`Vende S.A.`, `Acme Corp`).
+
+## Demo
+
+El proyecto está desplegado en la nube para su revisión:
+
+- **Frontend (SPA en Vue 3)**: [https://vende-challenge.vercel.app/](https://vende-challenge.vercel.app/)
+- **Backend (NestJS microservicio ms-products)**: [https://vende-challenge.onrender.com/api](https://vende-challenge.onrender.com/api)
+
+> Importante: Render apaga el servicio cuando no está en uso.  
+> La primera vez que accedas puede tardar unos segundos en encenderse.  
+> Para verificar que el backend está disponible, consulta directamente la URL del servicio:  
+> [https://vende-challenge.onrender.com/api](https://vende-challenge.onrender.com/api).
